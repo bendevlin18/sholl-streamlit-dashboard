@@ -28,7 +28,8 @@ with tab1:
                 )
             
         with col2:
-            st.image(image = "images\\black_mgla.png", width=600)
+            #st.image(image = "images\\black_mgla.png", width=600)
+	    st.image(image = "images/black_mgla.png", width=600)
 
 
 
