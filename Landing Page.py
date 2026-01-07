@@ -37,5 +37,6 @@ with tab2:
 
 with tab3:
     ### download button for the full protocol
-    with open("images\\ilastik_for_2d_sholl.docx", 'rb') as f:
+    #with open("images\\ilastik_for_2d_sholl.docx", 'rb') as f:
+    with open("images/ilastik_for_2d_sholl.docx", 'rb') as f:
         st.download_button(label = "Download Protocol Here", data = f, file_name='ilastik_protocol.docx')

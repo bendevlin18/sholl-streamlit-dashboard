@@ -21,7 +21,8 @@ with tab1:
                 
                 text_alignment="left")
     
-    st.image('images\\SAM.png', width = 1200)
+    #st.image('images\\SAM.png', width = 1200)
+    st.image('images/SAM.png', width = 1200)
 
 
 
@@ -36,7 +37,8 @@ with tab2:
         text_alignment="center"
         )
 
-    st.image('images\\1024v2048.png', width = 'stretch')
+    #st.image('images\\1024v2048.png', width = 'stretch')
+    st.image('images/1024v2048.png', width = 'stretch')
 
 
 with tab3:
@@ -46,7 +48,8 @@ with tab3:
                 """,
                 text_alignment="left")
     
-    st.image('images\\cellpose_sample_output.png', width = 'stretch')
+    #st.image('images\\cellpose_sample_output.png', width = 'stretch')
+    st.image('images/cellpose_sample_output.png', width = 'stretch')
 
 
     st.markdown("""
