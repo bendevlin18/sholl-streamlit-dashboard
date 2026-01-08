@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import plotly
 
 st.set_page_config(layout="wide")
+st.title("My Microglia Morphology Journey")
 
 tab1, tab2, tab3 = st.tabs(['Dashboard Overview', 'Sholl Explainer', 'Protocol .docx download'])
 
@@ -29,13 +30,15 @@ with tab1:
             
         with col2:
             st.image(image = "images/black_mgla.png", width=600)
-        #st.image(image = "images\\black_mgla.png", width=600)
+
+
 
 
 with tab2:
     st.write('want some details here showing what sholl analysis is')
 
 with tab3:
+    st.write("If you are looking to download a written protocol for this process, you can find that here")
     ### download button for the full protocol
     with open("images/ilastik_for_2d_sholl.docx", 'rb') as f:
         st.download_button(label = "Download Protocol Here", data = f, file_name='ilastik_protocol.docx')
