@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly
+import os
 
 st.set_page_config(layout = 'wide')
 st.title("Automated Microglia Segmentation with SAM")
@@ -196,5 +197,24 @@ with tab4:
                     """,
                     text_alignment="left")
         st.image('images/cellpose_sample_output.png', width = 'stretch')
+
+
+        st.markdown("""
+            This is an interactive exploration of one of my microglia images segmented with Cellpose-SAM
+            You can see the Annotated Mask image on the left, and a slider to select and view specific microglia on the right
+            """,
+            text_alignment="left")
+        
+        col1, col2 = st.columns([2,1])
+        with col1:
+            st.image('images/111_1_1_MIP_outputs/111_1_1_labelled_segmentations.png')
+        with col2:
+            col1, col2, col3 = st.columns([1,15,1]) 
+            with col2:
+                microglia_list = os.listdir('images/111_1_1_MIP_outputs')[0:-1]
+                microgliaID = st.select_slider(label = '', options = microglia_list, key = 17)
+                st.image('images/111_1_1_MIP_outputs/' + microgliaID)
+                st.caption(microgliaID)
+                
 
 
