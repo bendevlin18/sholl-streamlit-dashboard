@@ -212,7 +212,7 @@ with tab4:
             col1, col2, col3 = st.columns([1,15,1]) 
             with col2:
                 microglia_list = os.listdir('images/111_1_1_MIP_outputs')[0:-1]
-                microgliaID = st.select_slider(label = '', options = microglia_list, key = 17)
+                microgliaID = st.selectbox(label = '', options = microglia_list, key = 17)
                 st.image('images/111_1_1_MIP_outputs/' + microgliaID)
                 st.caption(microgliaID)
                 
