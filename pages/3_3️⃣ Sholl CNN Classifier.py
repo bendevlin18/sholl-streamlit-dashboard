@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import plotly
 import plotly.express as px
 import statsmodels.api as sm
+import os
+
 st.set_page_config(layout = 'wide')
 st.title("Conv. Neural Network For Predicting Microglia Morphology Scores")
 
@@ -128,7 +130,7 @@ with tab2:
                 """)
     
     with open("scripts/running_eval_mgla_morph_CNN.ipynb", 'rb') as f:
-        st.download_button(label = "Download CNN Training Script", data = f, file_name='mgla_morph_CNN_training_script.ijm')
+        st.download_button(label = "Download CNN Training Script", data = f, file_name='mgla_morph_CNN_training_script.ipynb')
 
     
 
@@ -137,9 +139,8 @@ with tab3:
     col1, col2, col3 = st.columns([1, 2.5, 1])
     with col2:
         st.markdown("""
-                    Here I've printed the first five columns of the model output data table that contains information about 
-
-
+                    Below is the test dataset model output. Each row is a single microglia image with its image ID,
+                    ground truth AUC (`val_trues`), and model-predicted AUC (`val_preds`):
                     """)
         st.write(testdata.head())
         fig = px.scatter(testdata, x='val_trues', y='val_preds', hover_data = ['imageID'], trendline="ols", title = 'Model Predictions v. Ground Truth AUC for Test Images <br><sup>MAE: 0.3949 | MSE: 0.2217 | R2: 0.8993</sup>')
@@ -178,10 +179,11 @@ with tab4:
             fig.add_traces(px.scatter(testdata[testdata['imageID'] == image], x='val_trues', y='val_preds').update_traces(marker_size=15, marker_color="orange").data)
             st.plotly_chart(fig, theme="streamlit", key = 3)
 
-            try: 
-                st.image('images/gradcam/' + image + '_overlay.png', width = 'stretch')
-                st.caption("Gradcam results for "+ image)
-            except:
+            gradcam_path = 'images/gradcam/' + image + '_overlay.png'
+            if os.path.exists(gradcam_path):
+                st.image(gradcam_path, width='stretch')
+                st.caption("Gradcam results for " + image)
+            else:
                 st.write('GradCAM results unavailable')
         
         with col2:
@@ -193,10 +195,11 @@ with tab4:
             fig.add_traces(px.scatter(testdata[testdata['imageID'] == image2], x='val_trues', y='val_preds').update_traces(marker_size=15, marker_color="orange").data)
             st.plotly_chart(fig, theme="streamlit", key = 4)
 
-            try: 
-                st.image('images/gradcam/' + image2 + '_overlay.png', width = 'stretch')
-                st.caption("Gradcam results for "+ image2)
-            except:
+            gradcam_path2 = 'images/gradcam/' + image2 + '_overlay.png'
+            if os.path.exists(gradcam_path2):
+                st.image(gradcam_path2, width='stretch')
+                st.caption("Gradcam results for " + image2)
+            else:
                 st.write('GradCAM results unavailable')
     
 with tab5:
@@ -212,4 +215,3 @@ with tab5:
                     """)
         st.image('images/blocking_ab_AUC_validation.jpg')
         st.image('images/KO_AUC_validation.jpg')
-    
