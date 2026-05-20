@@ -1,0 +1,1 @@
+you will need to move the yaml file in this folder to root to install the conda environment after cloning. i had to move it into this subfolder because it was stalling out streamlit pages cloud
